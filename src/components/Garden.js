@@ -27,7 +27,7 @@ function getTile(count) {
 const SIZE = 10
 
 const X_POS = 4
-const Y_POS = 2.5
+const Y_POS = 2.85
 
 function getRow(row) {
   return `translate(${row * X_POS}em, ${row * Y_POS}em)`
