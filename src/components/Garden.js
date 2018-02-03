@@ -83,7 +83,7 @@ const Week = ({row, week, select}) => (
 )
 
 const Container = styled.div`
-  transform: translateX(25%);
+  transform: translateX(25%) scale(0.75);
 `
 
 const Garden = ({garden, select}) => (

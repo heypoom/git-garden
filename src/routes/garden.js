@@ -5,9 +5,7 @@ import {createSelector} from 'reselect'
 
 import Garden from '../components/Garden'
 
-const Container = styled.div`
-  padding: 1.8em;
-`
+const Container = styled.div``
 
 const Count = styled.span`
   position: fixed;
@@ -21,6 +19,8 @@ const Count = styled.span`
 `
 
 const Title = styled.h1`
+  margin: 0;
+  padding-top: 1em;
   text-align: center;
 `
 
