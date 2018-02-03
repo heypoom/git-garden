@@ -5,6 +5,7 @@ import {lifecycle} from 'recompose'
 import {injectGlobal} from 'emotion'
 
 import Landing from '../routes'
+import Garden from '../routes/garden'
 import NotFound from '../routes/404'
 
 import createStore from '../ducks'
@@ -16,6 +17,7 @@ const App = () => (
     <Router>
       <Switch>
         <Route exact path="/" component={Landing} />
+        <Route path="/:id" component={Garden} />
         <Route component={NotFound} />
       </Switch>
     </Router>

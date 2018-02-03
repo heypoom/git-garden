@@ -32,6 +32,10 @@ export default {
       component: 'src/routes/index',
     },
     {
+      path: '/:id',
+      component: 'src/routes/garden',
+    },
+    {
       is404: true,
       component: 'src/routes/404',
     },
