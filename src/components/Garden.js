@@ -33,8 +33,8 @@ function getRow(row) {
   return `translate(${row * X_POS}em, ${row * Y_POS}em)`
 }
 
-function getCol(col, y) {
-  return `translate(${col * X_POS}em, ${col * -Y_POS + y}em)`
+function getCol(col, extra) {
+  return `translate(${col * X_POS + extra}em, ${col * -Y_POS + extra}em)`
 }
 
 const Scene = styled.div`
@@ -65,7 +65,7 @@ const Tile = styled.img`
   &:hover {
     z-index: 50;
     filter: drop-shadow(rgb(231, 116, 60) 0px 0px 12px);
-    transform: ${props => getCol(props.col, -1)} scale(1.3);
+    transform: ${props => getCol(props.col, -1.2)} scale(1.3);
   }
 `
 
