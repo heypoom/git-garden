@@ -24,22 +24,21 @@ function getTile(count) {
 }
 
 const SIZE = 10
-const SPACING = 3.3
+
+const X_POS = 4
+const Y_POS = 2.5
 
 function getRow(row) {
-  if (row === 0) {
-    // Ignore
-  } else if (row % 2 === 0) {
-    // 0
-    return `translate(${row * 4}em, -${row * SPACING}em)`
-  } else {
-    // 4
-    return `translate(${row * 4}em, -${row * SPACING}em)`
-  }
+  return `translate(${row * X_POS}em, ${row * Y_POS}em)`
+}
+
+function getCol(x, y) {
+  return `translate(${x * X_POS}em, ${x * -Y_POS}em)`
 }
 
 const Scene = styled.div`
   position: relative;
+  transform: translateY(15em);
 
   @media screen and (max-width: 480px) {
     transform: scale(0.4);
@@ -57,13 +56,6 @@ const Week = styled.div`
   transform: ${props => getRow(props.row)};
 `
 
-function getPos(x, y) {
-  const tX = x * 8
-  const tY = y * 6
-
-  return `translate(${tX}em, ${tY}em)`
-}
-
 const Tile = styled.img`
   position: absolute;
   z-index: ${props => 7 - props.x};
@@ -74,11 +66,11 @@ const Tile = styled.img`
   cursor: pointer;
   outline: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  transform: ${props => getPos(props.x, props.y)};
+  transform: ${props => getCol(props.x, props.y)};
 
   &:hover {
     filter: drop-shadow(rgb(130, 231, 60) 0px 0px 12px);
-    transform: ${props => getPos(props.x, props.y - 0.4)} scale(1.3);
+    transform: ${props => getCol(props.x, props.y - 0.4)} scale(1.3);
   }
 `
 
