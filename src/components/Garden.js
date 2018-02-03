@@ -40,6 +40,7 @@ function getCol(x, y) {
 const Scene = styled.div`
   position: relative;
   transform: translateY(${props => props.i * 45 + 20}em);
+  filter: drop-shadow(rgb(130, 231, 60) 0px 0px 12px);
 
   @media screen and (max-width: 480px) {
     transform: scale(0.4);
@@ -70,7 +71,7 @@ const Tile = styled.img`
   transform: ${props => getCol(props.x, props.y)};
 
   &:hover {
-    filter: drop-shadow(rgb(130, 231, 60) 0px 0px 12px);
+    filter: drop-shadow(rgb(231, 116, 60) 0px 0px 12px);
     transform: ${props => getCol(props.x, props.y - 0.4)} scale(1.3);
   }
 `
