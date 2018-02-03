@@ -12,19 +12,26 @@ export const setGarden = Creator(SET_GARDEN)
 const endpoint =
   'https://urlreq.appspot.com/req?method=GET&url=https://github.com/'
 
+const getTile = tile => ({
+  date: tile.getAttribute('data-date'),
+  count: parseInt(tile.getAttribute('data-count')),
+})
+
 export function* fetchGardenSaga({payload}) {
   const {data: html} = yield call(axios.get, endpoint + payload)
   const parser = new window.DOMParser()
   const dom = parser.parseFromString(html, 'text/html')
 
-  const tiles = dom
+  const rows = dom
     .querySelector('.js-calendar-graph-svg')
-    .querySelectorAll('rect.day')
+    .querySelector('g')
+    .querySelectorAll('g')
 
-  const contributions = [...tiles].map(x => ({
-    date: x.getAttribute('data-date'),
-    count: parseInt(x.getAttribute('data-count')),
-  }))
+  const contributions = [...rows].map(week =>
+    [...week.querySelectorAll('.day')].map(getTile),
+  )
+
+  console.log(contributions)
 
   yield put(setGarden(contributions))
 }
