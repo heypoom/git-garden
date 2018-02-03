@@ -33,22 +33,14 @@ function getRow(row) {
   return `translate(${row * X_POS}em, ${row * Y_POS}em)`
 }
 
-function getCol(x, y) {
-  return `translate(${x * X_POS}em, ${x * -Y_POS}em)`
+function getCol(col, y) {
+  return `translate(${col * X_POS}em, ${col * -Y_POS + y}em)`
 }
 
 const Scene = styled.div`
   position: relative;
   transform: translateY(${props => props.i * 45 + 20}em);
-  filter: drop-shadow(rgb(130, 231, 60) 0px 0px 12px);
-
-  @media screen and (max-width: 480px) {
-    transform: scale(0.4);
-  }
-
-  @media screen and (max-width: 800px) {
-    transform: scale(0.8);
-  }
+  filter: drop-shadow(rgba(130, 231, 60, 0.6) 0px 0px 12px);
 `
 
 const Row = styled.div`
@@ -60,7 +52,7 @@ const Row = styled.div`
 
 const Tile = styled.img`
   position: absolute;
-  z-index: ${props => 7 - props.x};
+  z-index: ${props => 7 - props.col};
 
   width: ${SIZE}em;
   height: ${SIZE}em;
@@ -68,11 +60,12 @@ const Tile = styled.img`
   cursor: pointer;
   outline: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  transform: ${props => getCol(props.x, props.y)};
+  transform: ${props => getCol(props.col, 0)};
 
   &:hover {
+    z-index: 50;
     filter: drop-shadow(rgb(231, 116, 60) 0px 0px 12px);
-    transform: ${props => getCol(props.x, props.y - 0.4)} scale(1.3);
+    transform: ${props => getCol(props.col, -1)} scale(1.3);
   }
 `
 
@@ -83,8 +76,7 @@ const Week = ({row, week, select}) => (
         key={day.date}
         onMouseOver={() => select(row, col)}
         src={getTile(day.count)}
-        x={col}
-        y={row}
+        col={col}
       />
     ))}
   </Row>

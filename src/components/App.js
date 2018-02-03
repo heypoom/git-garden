@@ -33,6 +33,7 @@ const enhance = lifecycle({
         min-height: 100vh;
         font-weight: 300;
         font-family: Roboto, "Helvetica Neue", "Sukhumvit Set", Avenir, -apple-system, BlinkMacSystemFont, "Segoe UI", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", sans-serif;
+
         background: #fbfcff;
       }
 
