@@ -29,9 +29,9 @@ export function* fetchGardenSaga({payload}) {
     .querySelector('g')
     .querySelectorAll('g')
 
-  const contributions = [...rows].map(week =>
-    [...week.querySelectorAll('.day')].map(getTile),
-  )
+  const contributions = [...rows]
+    .reverse()
+    .map(week => [...week.querySelectorAll('.day')].map(getTile))
 
   console.log(contributions)
 

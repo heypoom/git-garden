@@ -48,6 +48,14 @@ function getRow(row) {
 
 const Scene = styled.div`
   position: relative;
+
+  @media screen and (max-width: 480px) {
+    transform: scale(0.4);
+  }
+
+  @media screen and (max-width: 800px) {
+    transform: scale(0.8);
+  }
 `
 
 const Week = styled.div`
@@ -83,6 +91,8 @@ const TileImage = styled.img`
   height: ${SIZE}em;
 
   cursor: pointer;
+  outline: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   transform: ${props => getPos(props)};
 
   &:hover {
@@ -104,10 +114,12 @@ const Garden = ({garden, select, curr, match: {params}}) => (
     <Title>Garden of {params.id}</Title>
     <SubTitle>Total Contributions: {total(garden)}</SubTitle>
 
-    <Count>
-      <strong>{curr.count} Contributions</strong>
-      &nbsp;on&nbsp;<strong>{curr.date}</strong>
-    </Count>
+    {curr && (
+      <Count>
+        <strong>{curr.count} Contributions</strong>
+        &nbsp;on&nbsp;<strong>{curr.date}</strong>
+      </Count>
+    )}
 
     <Scene>
       {garden.map((week, row) => (
