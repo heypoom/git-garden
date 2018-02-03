@@ -89,8 +89,12 @@ const Week = ({row, week, select}) => (
   </Row>
 )
 
+const Container = styled.div`
+  transform: translateX(25%);
+`
+
 const Garden = ({garden, select}) => (
-  <div>
+  <Container>
     {splitEvery(7, garden).map((weeks, i) => {
       return (
         <Scene key={i} i={i}>
@@ -100,7 +104,7 @@ const Garden = ({garden, select}) => (
         </Scene>
       )
     })}
-  </div>
+  </Container>
 )
 
 const mapStateToProps = state => ({
