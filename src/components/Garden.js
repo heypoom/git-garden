@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import styled from 'react-emotion'
 import {compose, lifecycle} from 'recompose'
+import {splitEvery} from 'ramda'
 
 import {fetchGarden, select} from '../ducks/app'
 
@@ -38,7 +39,7 @@ function getCol(x, y) {
 
 const Scene = styled.div`
   position: relative;
-  transform: translateY(15em);
+  transform: translateY(${props => props.i * 45 + 20}em);
 
   @media screen and (max-width: 480px) {
     transform: scale(0.4);
@@ -49,7 +50,7 @@ const Scene = styled.div`
   }
 `
 
-const Week = styled.div`
+const Row = styled.div`
   position: relative;
   z-index: ${props => props.row};
 
@@ -74,22 +75,32 @@ const Tile = styled.img`
   }
 `
 
-const Garden = ({garden, select}) => (
-  <Scene>
-    {garden.map((week, row) => (
-      <Week key={row} row={row}>
-        {week.map((day, col) => (
-          <Tile
-            key={day.date}
-            onMouseOver={() => select(row, col)}
-            src={getTile(day.count)}
-            x={col}
-            y={row}
-          />
-        ))}
-      </Week>
+const Week = ({row, week, select}) => (
+  <Row key={row} row={row}>
+    {week.map((day, col) => (
+      <Tile
+        key={day.date}
+        onMouseOver={() => select(row, col)}
+        src={getTile(day.count)}
+        x={col}
+        y={row}
+      />
     ))}
-  </Scene>
+  </Row>
+)
+
+const Garden = ({garden, select}) => (
+  <div>
+    {splitEvery(7, garden).map((weeks, i) => {
+      return (
+        <Scene key={i} i={i}>
+          {weeks.map((week, row) => (
+            <Week key={row} row={row} week={week} select={select} />
+          ))}
+        </Scene>
+      )
+    })}
+  </div>
 )
 
 const mapStateToProps = state => ({
