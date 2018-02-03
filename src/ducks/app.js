@@ -21,12 +21,12 @@ export function* fetchGardenSaga({payload}) {
     .querySelector('.js-calendar-graph-svg')
     .querySelectorAll('rect.day')
 
-  const contrib = [...tiles].map(x => ({
+  const contributions = [...tiles].map(x => ({
     date: x.getAttribute('data-date'),
     count: parseInt(x.getAttribute('data-count')),
   }))
 
-  console.log(contrib)
+  yield put(setGarden(contributions))
 }
 
 export function* appWatcherSaga() {
