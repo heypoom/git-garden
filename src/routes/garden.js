@@ -115,7 +115,7 @@ const Garden = ({garden, select, curr, match: {params}}) => (
           {week.map((day, col) => (
             <TileImage
               key={day.date}
-              onClick={() => select(row, col)}
+              onMouseOver={() => select(row, col)}
               src={getTile(day.count)}
               x={col}
               y={row}
