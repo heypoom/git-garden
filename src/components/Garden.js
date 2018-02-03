@@ -30,9 +30,11 @@ function getRow(row) {
   if (row === 0) {
     // Ignore
   } else if (row % 2 === 0) {
-    return `translate(0em, -${row * SPACING}em)`
+    // 0
+    return `translate(${row * 4}em, -${row * SPACING}em)`
   } else {
-    return `translate(4em, -${row * SPACING}em)`
+    // 4
+    return `translate(${row * 4}em, -${row * SPACING}em)`
   }
 }
 
