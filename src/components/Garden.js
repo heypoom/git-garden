@@ -55,14 +55,14 @@ const Week = styled.div`
   transform: ${props => getRow(props.row)};
 `
 
-function getPos({x, y}) {
+function getPos(x, y) {
   const tX = x * 8
   const tY = y * 6
 
   return `translate(${tX}em, ${tY}em)`
 }
 
-const TileImage = styled.img`
+const Tile = styled.img`
   position: absolute;
   z-index: ${props => 7 - props.x};
 
@@ -72,11 +72,11 @@ const TileImage = styled.img`
   cursor: pointer;
   outline: none;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  transform: ${props => getPos(props)};
+  transform: ${props => getPos(props.x, props.y)};
 
   &:hover {
     filter: drop-shadow(rgb(130, 231, 60) 0px 0px 12px);
-    transform: ${props => getPos(props)} scale(1.12);
+    transform: ${props => getPos(props.x, props.y - 0.4)} scale(1.3);
   }
 `
 
@@ -85,7 +85,7 @@ const Garden = ({garden, select}) => (
     {garden.map((week, row) => (
       <Week key={row} row={row}>
         {week.map((day, col) => (
-          <TileImage
+          <Tile
             key={day.date}
             onMouseOver={() => select(row, col)}
             src={getTile(day.count)}
