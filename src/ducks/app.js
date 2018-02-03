@@ -5,9 +5,11 @@ import {createReducer, Creator} from './helper'
 
 export const FETCH_GARDEN = 'FETCH_GARDEN'
 export const SET_GARDEN = 'SET_GARDEN'
+export const SELECT = 'SELECT'
 
 export const fetchGarden = Creator(FETCH_GARDEN)
 export const setGarden = Creator(SET_GARDEN)
+export const select = Creator(SELECT, 'row', 'col')
 
 const endpoint =
   'https://urlreq.appspot.com/req?method=GET&url=https://github.com/'
@@ -42,11 +44,16 @@ export function* appWatcherSaga() {
 
 const initial = {
   garden: [],
+  cursor: {row: 0, col: 0},
 }
 
 export default createReducer(initial, state => ({
   [SET_GARDEN]: garden => ({
     ...state,
     garden,
+  }),
+  [SELECT]: ({row, col}) => ({
+    ...state,
+    cursor: {row, col},
   }),
 }))
