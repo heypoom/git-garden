@@ -27,7 +27,7 @@ function getTile(count) {
 const SIZE = 10
 
 const X_POS = 4
-const Y_POS = 2.85
+const Y_POS = 2.7
 
 function getRow(row) {
   return `translate(${row * X_POS}em, ${row * Y_POS}em)`
@@ -64,7 +64,7 @@ const Tile = styled.img`
 
   &:hover {
     z-index: 50;
-    filter: drop-shadow(rgb(231, 116, 60) 0px 0px 12px);
+    filter: drop-shadow(rgb(130, 231, 60) 0px 0px 12px);
     transform: ${props => getCol(props.col, -1.2)} scale(1.3);
   }
 `
