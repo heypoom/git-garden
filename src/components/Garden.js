@@ -1,13 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import styled from 'react-emotion'
-import {createSelector} from 'reselect'
+import {compose, lifecycle} from 'recompose'
 
-import Garden from '../components/Garden'
-
-const Container = styled.div`
-  padding: 1.8em;
-`
+import {fetchGarden, select} from '../ducks/app'
 
 function getTile(count) {
   if (count === 0) {
@@ -59,17 +55,6 @@ const Week = styled.div`
   transform: ${props => getRow(props.row)};
 `
 
-const Count = styled.span`
-  position: fixed;
-  z-index: 200;
-  display: flex;
-  top: 0;
-  padding: 1em;
-  background: white;
-  box-shadow: 0 1px 1.5px 1px rgba(0, 0, 0, 0.12);
-  font-size: 1.4em;
-`
-
 function getPos({x, y}) {
   const tX = x * 8
   const tY = y * 6
@@ -95,54 +80,37 @@ const TileImage = styled.img`
   }
 `
 
-const Title = styled.h1`
-  text-align: center;
-`
-
-const SubTitle = styled.h2`
-  text-align: center;
-`
-
-const GardenView = ({total, curr, match: {params}}) => (
-  <Container>
-    <Title>Garden of {params.id}</Title>
-    <SubTitle>Total Contributions: {total}</SubTitle>
-
-    {curr && (
-      <Count>
-        <strong>{curr.count} Contributions</strong>
-        &nbsp;on&nbsp;<strong>{curr.date}</strong>
-      </Count>
-    )}
-
-    <Garden username={params.id} />
-  </Container>
-)
-
-const currSelector = createSelector(
-  state => state.app.garden,
-  state => state.app.cursor.row,
-  state => state.app.cursor.col,
-  (garden, row, col) => {
-    if (garden[row]) {
-      return garden[row][col]
-    }
-  },
-)
-
-const totalSelector = createSelector(
-  state => state.app.garden || [],
-  garden =>
-    garden
-      .reduce((x, y) => [...x, ...y], [])
-      .reduce((sum, acc) => sum + acc.count, 0),
+const Garden = ({garden, select}) => (
+  <Scene>
+    {garden.map((week, row) => (
+      <Week key={row} row={row}>
+        {week.map((day, col) => (
+          <TileImage
+            key={day.date}
+            onMouseOver={() => select(row, col)}
+            src={getTile(day.count)}
+            x={col}
+            y={row}
+          />
+        ))}
+      </Week>
+    ))}
+  </Scene>
 )
 
 const mapStateToProps = state => ({
-  total: totalSelector(state),
-  curr: currSelector(state),
+  garden: state.app.garden,
 })
 
-const enhance = connect(mapStateToProps)
+const enhance = compose(
+  connect(mapStateToProps, {fetchGarden, select}),
+  lifecycle({
+    async componentWillMount() {
+      const id = this.props.username
 
-export default enhance(GardenView)
+      await this.props.fetchGarden(id)
+    },
+  }),
+)
+
+export default enhance(Garden)
