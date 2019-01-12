@@ -2,7 +2,7 @@ import React from 'react'
 import {Root, Routes} from 'react-static'
 import {Router, Link} from '@reach/router'
 
-import Garden from '../garden'
+import Garden from '../garden-page'
 import Landing from '../landing'
 import Challenge from '../challenge'
 

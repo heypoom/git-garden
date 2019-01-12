@@ -1,28 +1,8 @@
 import React from 'react'
-import {connect} from 'react-redux'
-import styled from 'react-emotion'
-import {compose, lifecycle} from 'recompose'
+import {styled} from '@emotion/core'
 import {splitEvery} from 'ramda'
 
-import {fetchGarden, select} from '../ducks/app'
-
-function getTile(count) {
-  if (count === 0) {
-    return require('../assets/0.svg')
-  } else if (count >= 1 && count < 5) {
-    return require('../assets/1.svg')
-  } else if (count >= 5 && count < 10) {
-    return require('../assets/2.svg')
-  } else if (count >= 10 && count < 20) {
-    return require('../assets/3.svg')
-  } else if (count >= 20 && count < 30) {
-    return require('../assets/4.svg')
-  } else if (count >= 30 && count < 40) {
-    return require('../assets/5.svg')
-  } else if (count >= 40) {
-    return require('../assets/6.svg')
-  }
-}
+import {getTile} from './getTile'
 
 const SIZE = 10
 
@@ -100,22 +80,4 @@ const Garden = ({garden, select}) => (
   </Container>
 )
 
-const mapStateToProps = state => ({
-  garden: state.app.garden
-})
-
-const enhance = compose(
-  connect(
-    mapStateToProps,
-    {fetchGarden, select}
-  ),
-  lifecycle({
-    async componentWillMount() {
-      const id = this.props.username
-
-      await this.props.fetchGarden(id)
-    }
-  })
-)
-
-export default enhance(Garden)
+export default Garden

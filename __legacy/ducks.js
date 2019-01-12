@@ -16,7 +16,7 @@ const endpoint =
 
 const getTile = tile => ({
   date: tile.getAttribute('data-date'),
-  count: parseInt(tile.getAttribute('data-count')),
+  count: parseInt(tile.getAttribute('data-count'))
 })
 
 export function* fetchGardenSaga({payload}) {
@@ -44,16 +44,16 @@ export function* appWatcherSaga() {
 
 const initial = {
   garden: [],
-  cursor: {row: 0, col: 0},
+  cursor: {row: 0, col: 0}
 }
 
 export default createReducer(initial, state => ({
   [SET_GARDEN]: garden => ({
     ...state,
-    garden,
+    garden
   }),
   [SELECT]: ({row, col}) => ({
     ...state,
-    cursor: {row, col},
-  }),
+    cursor: {row, col}
+  })
 }))
