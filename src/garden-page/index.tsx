@@ -1,13 +1,33 @@
-import React from 'react'
+import React, {useEffect, useContext} from 'react'
+import {observer, useObserver, useObservable} from 'mobx-react-lite'
 
 import {store} from '../store'
+import {GardenDisplay} from '../garden-display'
 
-function Garden({path = '', id = ''}) {
-  return <div>Garden of {id}</div>
+function Garden({path = '', user = ''}) {
+  const {contributions} = store
+
+  console.log('Contributions =', contributions)
+
+  // prettier-ignore
+  useEffect(() => {
+    console.log('User =', user)
+
+    store.loadContributions(user)
+  }, [user])
+
+  return (
+    <div>
+      <div>Garden of {user}</div>
+      <div>Contributions: {contributions.length}</div>
+
+      <GardenDisplay select={store.select} contributions={contributions} />
+    </div>
+  )
 }
 
 if (typeof window !== 'undefined') {
   window.store = store
 }
 
-export default Garden
+export default observer(Garden)

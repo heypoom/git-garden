@@ -18,7 +18,7 @@ function App() {
       <Router>
         <Landing path="/" />
         <Challenge path="/challenge" />
-        <Garden path="/:id" />
+        <Garden path="/:user" />
         <StaticRoutes default />
       </Router>
     </Root>

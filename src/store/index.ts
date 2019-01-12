@@ -1,6 +1,6 @@
-import {action} from 'mobx'
+import {action, observable} from 'mobx'
 
-import {fetchGarden} from './fetchGarden'
+import {fetchContributions} from './fetchContributions'
 
 declare global {
   interface Window {
@@ -8,22 +8,29 @@ declare global {
   }
 }
 
-export interface Tile {
+export interface Contribution {
   date: string
   count: number
 }
 
 export class Store {
-  garden: Tile[][] = []
+  @observable
+  contributions: Contribution[][] = []
 
+  @observable
   cursor = {
     row: 0,
     col: 0
   }
 
   @action
-  loadGarden = async (user: string) => {
-    this.garden = await fetchGarden(user)
+  loadContributions = async (user: string) => {
+    this.contributions = await fetchContributions(user)
+  }
+
+  @action
+  select = (row: number, col: number) => {
+    this.cursor = {row, col}
   }
 }
 

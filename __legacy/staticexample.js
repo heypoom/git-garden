@@ -24,26 +24,26 @@ export default {
   siteRoot,
   getSiteProps: () => ({
     title: 'Git Garden',
-    siteRoot,
+    siteRoot
   }),
   getRoutes: async () => [
     {
       path: '/',
-      component: 'src/routes/index',
+      component: 'src/routes/index'
     },
     {
-      path: '/:id',
-      component: 'src/routes/garden',
+      path: '/:user',
+      component: 'src/routes/garden'
     },
     {
       is404: true,
-      component: 'src/routes/404',
-    },
+      component: 'src/routes/404'
+    }
   ],
   renderToHtml: (render, Comp, meta) => {
     const html = render(<Comp />)
     meta.css = extractCritical(html).css
     return html
   },
-  Document,
+  Document
 }

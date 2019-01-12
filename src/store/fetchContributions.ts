@@ -1,8 +1,8 @@
 import axios from 'axios'
 
-import {Tile} from '.'
+import {Contribution} from '.'
 
-const getTile = (tile: Element): Tile => ({
+const getContribution = (tile: Element): Contribution => ({
   date: String(tile.getAttribute('data-date')),
   count: Number(tile.getAttribute('data-count'))
 })
@@ -10,7 +10,9 @@ const getTile = (tile: Element): Tile => ({
 const withCORS = (url: string) =>
   'https://urlreq.appspot.com/req?method=GET&url=' + url
 
-export async function fetchGarden(user: String): Promise<Tile[][]> {
+export async function fetchContributions(
+  user: String
+): Promise<Contribution[][]> {
   const endpoint = withCORS(`https://github.com/users/${user}/contributions`)
   const {data: html} = await axios.get(endpoint)
 
@@ -21,5 +23,5 @@ export async function fetchGarden(user: String): Promise<Tile[][]> {
 
   return [...rows]
     .reverse()
-    .map(week => Array.from(week.querySelectorAll('.day')).map(getTile))
+    .map(week => Array.from(week.querySelectorAll('.day')).map(getContribution))
 }
