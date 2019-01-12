@@ -1,49 +1,27 @@
-import React, {Component} from 'react'
-import {extractCritical} from 'emotion-server'
-
-const siteRoot = 'https://git-garden.firebaseapp.com'
-
-class Document extends Component {
-  render() {
-    const {Html, Head, Body, children, renderMeta} = this.props
-
-    return (
-      <Html>
-        <Head>
-          <meta charSet="UTF-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-          <style dangerouslySetInnerHTML={{__html: renderMeta.css}} />
-        </Head>
-        <Body>{children}</Body>
-      </Html>
-    )
-  }
-}
+import axios from 'axios'
 
 export default {
-  siteRoot,
-  getSiteProps: () => ({
-    title: 'Git Garden',
-    siteRoot,
+  getSiteData: () => ({
+    title: 'React Static',
   }),
-  getRoutes: async () => [
-    {
-      path: '/',
-      component: 'src/routes/index',
-    },
-    {
-      path: '/:id',
-      component: 'src/routes/garden',
-    },
-    {
-      is404: true,
-      component: 'src/routes/404',
-    },
-  ],
-  renderToHtml: (render, Comp, meta) => {
-    const html = render(<Comp />)
-    meta.css = extractCritical(html).css
-    return html
+  getRoutes: async () => {
+    const { data: posts } = await axios.get(
+      'https://jsonplaceholder.typicode.com/posts'
+    )
+    return [
+      {
+        path: '/blog',
+        getData: () => ({
+          posts,
+        }),
+        children: posts.map(post => ({
+          path: `/post/${post.id}`,
+          component: 'src/containers/Post',
+          getData: () => ({
+            post,
+          }),
+        })),
+      },
+    ]
   },
-  Document,
 }
