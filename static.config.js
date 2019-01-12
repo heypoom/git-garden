@@ -1,11 +1,12 @@
 export default {
+  siteRoot: 'https://gitgarden.netlify.com',
   plugins: [
     'react-static-plugin-emotion',
     'react-static-plugin-typescript',
     'react-static-plugin-sass'
   ],
   getSiteData: () => ({
-    title: 'React Static'
+    title: 'Git Garden'
   }),
   getRoutes: () => {
     return [
