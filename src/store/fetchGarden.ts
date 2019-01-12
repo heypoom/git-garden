@@ -1,20 +1,19 @@
-import {action} from 'mobx'
 import axios from 'axios'
 
-interface Tile {
-  date: string
-  count: number
-}
+import {Tile} from '.'
 
 const getTile = (tile: Element): Tile => ({
   date: String(tile.getAttribute('data-date')),
   count: Number(tile.getAttribute('data-count'))
 })
 
+const withCORS = (url: string) =>
+  'https://urlreq.appspot.com/req?method=GET&url=' + url
+
 export async function fetchGarden(user: String): Promise<Tile[][]> {
-  const {data: html} = await axios.get(
-    `https://github.com/users/${user}/contributions`
-  )
+  const endpoint = withCORS(`https://github.com/users/${user}/contributions`)
+  const {data: html} = await axios.get(endpoint)
+
   const parser = new DOMParser()
   const dom = parser.parseFromString(html, 'text/html')
 
@@ -24,16 +23,3 @@ export async function fetchGarden(user: String): Promise<Tile[][]> {
     .reverse()
     .map(week => Array.from(week.querySelectorAll('.day')).map(getTile))
 }
-
-export class Store {
-  garden: Tile[][] = []
-
-  cursor = {row: 0, col: 0}
-
-  @action
-  loadGarden = async (user: string) => {
-    this.garden = await fetchGarden(user)
-  }
-}
-
-export const store = new Store()

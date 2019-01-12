@@ -15,7 +15,7 @@ export default {
       },
       {
         path: '/:id',
-        component: 'src/garden'
+        component: 'src/garden-page'
       },
       {
         path: '/challenge',
