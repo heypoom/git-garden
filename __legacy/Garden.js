@@ -101,18 +101,21 @@ const Garden = ({garden, select}) => (
 )
 
 const mapStateToProps = state => ({
-  garden: state.app.garden,
+  garden: state.app.garden
 })
 
 const enhance = compose(
-  connect(mapStateToProps, {fetchGarden, select}),
+  connect(
+    mapStateToProps,
+    {fetchGarden, select}
+  ),
   lifecycle({
     async componentWillMount() {
       const id = this.props.username
 
       await this.props.fetchGarden(id)
-    },
-  }),
+    }
+  })
 )
 
 export default enhance(Garden)

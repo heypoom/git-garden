@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {takeEvery, call, put} from 'redux-saga/effects'
 
-import {createReducer, Creator} from './helper'
+import {createReducer, Creator} from '../../src-old/ducks/helper'
 
 export const FETCH_GARDEN = 'FETCH_GARDEN'
 export const SET_GARDEN = 'SET_GARDEN'

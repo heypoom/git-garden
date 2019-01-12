@@ -10,15 +10,26 @@
     "serve": "serve dist -p 3000 -s"
   },
   "dependencies": {
+    "@emotion/core": "^10.0.6",
+    "@emotion/styled": "^10.0.6",
     "@reach/router": "^1.2.1",
     "axios": "^0.18.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-hot-loader": "^4.3.12",
-    "react-static": "^6.0.18"
+    "react-static": "^6.0.18",
+    "react-static-plugin-emotion": "^6.1.1"
   },
   "devDependencies": {
+    "@types/node": "^10.12.18",
+    "@types/reach__router": "^1.2.2",
+    "@types/react": "^16.7.18",
+    "@types/react-dom": "^16.0.11",
+    "@types/react-hot-loader": "^4.1.0",
+    "@types/webpack-env": "^1.13.6",
     "eslint-config-react-tools": "1.x.x",
-    "serve": "10.1.1"
+    "react-static-plugin-typescript": "^3.0.1",
+    "serve": "10.1.1",
+    "typescript": "^3.2.2"
   }
 }

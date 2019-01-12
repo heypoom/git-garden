@@ -1,27 +1,26 @@
-import axios from 'axios'
-
 export default {
+  plugins: ['react-static-plugin-emotion', 'react-static-plugin-typescript'],
   getSiteData: () => ({
-    title: 'React Static',
+    title: 'React Static'
   }),
-  getRoutes: async () => {
-    const { data: posts } = await axios.get(
-      'https://jsonplaceholder.typicode.com/posts'
-    )
+  getRoutes: () => {
     return [
       {
-        path: '/blog',
-        getData: () => ({
-          posts,
-        }),
-        children: posts.map(post => ({
-          path: `/post/${post.id}`,
-          component: 'src/containers/Post',
-          getData: () => ({
-            post,
-          }),
-        })),
+        path: '/',
+        component: 'src/landing'
       },
+      {
+        path: '/:id',
+        component: 'src/garden'
+      },
+      {
+        path: '/challenge',
+        component: 'src/challenge'
+      },
+      {
+        path: '404',
+        component: 'src/404'
+      }
     ]
-  },
+  }
 }

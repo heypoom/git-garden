@@ -1,27 +1,24 @@
 import React from 'react'
 import {Provider} from 'react-redux'
-import {Router, Route, Switch} from 'react-static'
 import {lifecycle} from 'recompose'
 import {injectGlobal} from 'emotion'
 
-import Landing from '../routes'
+import Landing from '../../src-old/routes'
 import Garden from '../routes/garden'
-import NotFound from '../routes/404'
+import NotFound from '../../src-old/routes/404'
 
-import createStore from '../ducks'
+import createStore from '../../src-old/ducks'
 
 const store = createStore()
 
 const App = () => (
-  <Provider store={store}>
-    <Router>
-      <Switch>
-        <Route exact path="/" component={Landing} />
-        <Route path="/:id" component={Garden} />
-        <Route component={NotFound} />
-      </Switch>
-    </Router>
-  </Provider>
+  <Router>
+    <Switch>
+      <Route exact path="/" component={Landing} />
+      <Route path="/:id" component={Garden} />
+      <Route component={NotFound} />
+    </Switch>
+  </Router>
 )
 
 const enhance = lifecycle({
@@ -41,7 +38,7 @@ const enhance = lifecycle({
         box-sizing: border-box;
       }
     `
-  },
+  }
 })
 
 export default enhance(App)

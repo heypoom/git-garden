@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import styled from 'react-emotion'
 import {createSelector} from 'reselect'
 
-import Garden from '../components/Garden'
+import Garden from './Garden'
 
 const Container = styled.div``
 
