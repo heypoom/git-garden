@@ -13,14 +13,17 @@ interface SceneProps {
   index: number
 }
 
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 35vw;
+`
+
 const Scene = styled.div`
   position: relative;
   transform: translateY(${(props: SceneProps) => props.index * 45 + 20}em);
   filter: drop-shadow(rgba(130, 231, 60, 0.6) 0px 0px 12px);
-`
-
-const Container = styled.div`
-  transform: translateX(25%) scale(0.75);
 `
 
 interface GardenProps {
