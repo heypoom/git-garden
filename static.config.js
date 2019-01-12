@@ -1,5 +1,9 @@
 export default {
-  plugins: ['react-static-plugin-emotion', 'react-static-plugin-typescript'],
+  plugins: [
+    'react-static-plugin-emotion',
+    'react-static-plugin-typescript',
+    'react-static-plugin-sass'
+  ],
   getSiteData: () => ({
     title: 'React Static'
   }),

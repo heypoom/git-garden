@@ -6,6 +6,8 @@ import Garden from '../garden'
 import Landing from '../landing'
 import Challenge from '../challenge'
 
+import '../style.sass'
+
 function StaticRoutes({default: bool = false}) {
   return <Routes />
 }
@@ -16,7 +18,7 @@ function App() {
       <Router>
         <Landing path="/" />
         <Challenge path="/challenge" />
-        <Garden path="/*" />
+        <Garden path="/:id" />
         <StaticRoutes default />
       </Router>
     </Root>
