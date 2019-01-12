@@ -1,5 +1,5 @@
-import React, {useEffect, useContext} from 'react'
-import {observer, useObserver, useObservable} from 'mobx-react-lite'
+import React, {useEffect} from 'react'
+import {observer} from 'mobx-react-lite'
 
 import {store} from '../store'
 import {GardenDisplay} from '../garden-display'
