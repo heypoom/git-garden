@@ -2,6 +2,7 @@ import React from 'react'
 
 import {Row} from './Row'
 import {Tile} from './Tile'
+import {Tree} from './Tree'
 
 import {getTile} from './getTile'
 import {Contribution} from '../store'
@@ -18,9 +19,12 @@ export const Week = ({row, week, select}: WeekProps) => (
       <Tile
         key={col}
         onMouseOver={() => select(contribution.date)}
-        src={getTile(contribution.count)}
         col={col}
-      />
+      >
+        <Tree    
+          src={getTile(contribution.count)}
+        />
+      </Tile>
     ))}
   </Row>
 )
