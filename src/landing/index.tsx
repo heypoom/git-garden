@@ -72,25 +72,27 @@ export default class LandingPage extends Component<LandingProps, LandingState> {
     const {user} = this.state
 
     return (
-      <LandingContainer className="landing-page">
-        <Heading>Git Garden</Heading>
+      <div>
+        <LandingContainer className="landing-page">
+          <Heading>Git Garden</Heading>
 
-        <Input
-          value={user}
-          placeholder="GitHub Name"
-          onKeyPress={this.onKeyPress}
-          onChange={this.setUser}
-        />
+          <Input
+            value={user}
+            placeholder="GitHub Name"
+            onKeyPress={this.onKeyPress}
+            onChange={this.setUser}
+          />
 
-        <Button
-          style={buttonStyle}
-          onClick={() => this.viewGarden(user)}
-          large
-          primary
-        >
-          View Garden
-        </Button>
-      </LandingContainer>
+          <Button
+            style={buttonStyle}
+            onClick={() => this.viewGarden(user)}
+            large
+            primary
+          >
+            View Garden
+          </Button>
+        </LandingContainer>
+      </div>
     )
   }
 }
