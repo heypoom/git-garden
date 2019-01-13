@@ -4,7 +4,7 @@ import {navigate} from '@reach/router'
 
 import {Button} from '../ui-button'
 
-const LandingContainer = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -72,27 +72,25 @@ export default class LandingPage extends Component<LandingProps, LandingState> {
     const {user} = this.state
 
     return (
-      <div>
-        <LandingContainer className="landing-page">
-          <Heading>Git Garden</Heading>
+      <Container>
+        <Heading>Git Garden</Heading>
 
-          <Input
-            value={user}
-            placeholder="GitHub Name"
-            onKeyPress={this.onKeyPress}
-            onChange={this.setUser}
-          />
+        <Input
+          value={user}
+          placeholder="GitHub Name"
+          onKeyPress={this.onKeyPress}
+          onChange={this.setUser}
+        />
 
-          <Button
-            style={buttonStyle}
-            onClick={() => this.viewGarden(user)}
-            large
-            primary
-          >
-            View Garden
-          </Button>
-        </LandingContainer>
-      </div>
+        <Button
+          style={buttonStyle}
+          onClick={() => this.viewGarden(user)}
+          large
+          primary
+        >
+          View Garden
+        </Button>
+      </Container>
     )
   }
 }

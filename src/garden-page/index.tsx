@@ -27,7 +27,7 @@ export default class GardenPage extends Component<GardenPageProps> {
     const {user} = this.props
 
     return (
-      <div className="garden-page">
+      <div>
         <div>Garden of {user}</div>
 
         {total && <div>Contributions: {total}</div>}
