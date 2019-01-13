@@ -1,10 +1,9 @@
-import {flatten} from 'ramda'
+import {flatten, groupBy} from 'ramda'
 import {action, computed, observable} from 'mobx'
 
 import {fetchContributions} from './fetchContributions'
 
 import {Nullable} from '../common/types'
-import groupBy from 'ramda/es/groupBy'
 
 // Inject store into global
 declare global {
