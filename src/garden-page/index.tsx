@@ -10,7 +10,7 @@ interface GardenPageProps {
 }
 
 function GardenPage({user = ''}: GardenPageProps) {
-  const {contributions, activeTile} = store
+  const {total, contributions, activeTile} = store
 
   // prettier-ignore
   useEffect(() => {
@@ -22,7 +22,8 @@ function GardenPage({user = ''}: GardenPageProps) {
   return (
     <div>
       <div>Garden of {user}</div>
-      <div>Contributions: {contributions.length}</div>
+
+      {total && <div>Contributions: {total}</div>}
 
       {activeTile && (
         <div>

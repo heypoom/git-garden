@@ -1,3 +1,4 @@
+import {flatten} from 'ramda'
 import {action, computed, observable} from 'mobx'
 
 import {fetchContributions} from './fetchContributions'
@@ -33,6 +34,15 @@ export class Store {
     const {row, col} = this.cursor
 
     return this.contributions[row][col]
+  }
+
+  @computed
+  get total(): Nullable<Number> {
+    if (this.contributions.length === 0) return null
+
+    const contributions = flatten<Contribution>(this.contributions)
+
+    return contributions.map(c => c.count).reduce((a, b) => a + b)
   }
 
   @action
