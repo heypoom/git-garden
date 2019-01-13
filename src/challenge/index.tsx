@@ -1,3 +1,11 @@
 import React from 'react'
 
-export default ({path = ''}) => <div>Challenge Route</div>
+function ChallengePage({path = ''}) {
+  return (
+    <div>
+      <h1>Challenge Page</h1>
+    </div>
+  )
+}
+
+export default ChallengePage
