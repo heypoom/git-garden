@@ -16,10 +16,12 @@
     "axios": "^0.18.0",
     "mobx": "^5.8.0",
     "mobx-react-lite": "^0.3.5",
+    "normalize.css": "^8.0.1",
     "ramda": "^0.26.1",
     "react": "^16.8.0-alpha",
     "react-dom": "^16.8.0-alpha",
     "react-hot-loader": "^4.3.12",
+    "react-ink": "^6.4.0",
     "react-static": "^6.0.18",
     "react-static-plugin-emotion": "^6.1.1",
     "react-static-plugin-sass": "^6.1.1"
