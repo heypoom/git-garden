@@ -9,7 +9,7 @@ import {Contribution} from '../store'
 export interface WeekProps {
   row: number
   week: Contribution[]
-  select: (row: number, col: number) => void
+  select: (date: Date) => void
 }
 
 export const Week = ({row, week, select}: WeekProps) => (
@@ -17,7 +17,7 @@ export const Week = ({row, week, select}: WeekProps) => (
     {week.map((contribution, col) => (
       <Tile
         key={col}
-        onMouseOver={() => select(row, col)}
+        onMouseOver={() => select(contribution.date)}
         src={getTile(contribution.count)}
         col={col}
       />

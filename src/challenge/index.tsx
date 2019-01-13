@@ -32,7 +32,7 @@ export default class ChallengePage extends Component<ChallengeProps> {
       return <h1>Please login with GitHub to view your challenge page.</h1>
     }
 
-    if (!monthlyContributions) return <Loader />
+    if (monthlyContributions.length === 0) return <Loader />
 
     const contributions = splitEvery(7, monthlyContributions)
 

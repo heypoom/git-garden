@@ -4,6 +4,7 @@ import {action, computed, observable} from 'mobx'
 import {fetchContributions} from './fetchContributions'
 
 import {Nullable} from '../common/types'
+import groupBy from 'ramda/es/groupBy'
 
 // Inject store into global
 declare global {
@@ -20,23 +21,38 @@ export interface Contribution {
 const countContributions = (contributions: Contribution[]) =>
   contributions.map(c => c.count).reduce((a, b) => a + b, 0)
 
+const groupByMonth = groupBy(
+  (c: Contribution) => `${c.date.getMonth() + 1}-${c.date.getFullYear()}`
+)
+
+const sortContributionByDate = (a: Contribution, b: Contribution) =>
+  b.date.getTime() - a.date.getTime()
+
 export class Store {
   @observable
   contributions: Contribution[][] = []
 
   @observable
-  cursor = {
-    row: 0,
-    col: 0
-  }
+  cursor = 0
 
   @computed
   get activeTile(): Nullable<Contribution> {
     if (this.contributions.length === 0) return null
 
-    const {row, col} = this.cursor
+    const list = this.contributionList || []
 
-    return this.contributions[row][col]
+    return list.find(x => x.date.getTime() === this.cursor) || null
+  }
+
+  @computed
+  get groupByMonth(): {[index: string]: Contribution[]} {
+    if (this.contributionList) {
+      const contributions = this.contributionList.sort(sortContributionByDate)
+
+      return groupByMonth(contributions)
+    }
+
+    return {}
   }
 
   @computed
@@ -57,7 +73,7 @@ export class Store {
     const isThisMonth = (c: Contribution) =>
       c.date.getMonth() === month && c.date.getFullYear() === year
 
-    return list.filter(isThisMonth)
+    return list.filter(isThisMonth).sort(sortContributionByDate)
   }
 
   @computed
@@ -76,8 +92,8 @@ export class Store {
   }
 
   @action
-  select = (row: number, col: number) => {
-    this.cursor = {row, col}
+  select = (date: Date) => {
+    this.cursor = date.getTime()
   }
 }
 

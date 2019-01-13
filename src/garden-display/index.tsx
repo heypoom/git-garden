@@ -28,11 +28,11 @@ const Month = styled.div`
 
 interface GardenProps {
   contributions: Contribution[][]
-  select: (row: number, col: number) => void
+  select: (date: Date) => void
 }
 
 export function GardenDisplay({contributions, select}: GardenProps) {
-  const months = splitEvery(7, contributions)
+  const months = contributions.map(c => splitEvery(7, c))
 
   return (
     <Container>

@@ -17,6 +17,9 @@ const TileInfo = ({date, count}: Contribution) => (
   </div>
 )
 
+const sortMonth = (month: Contribution[]) =>
+  month.sort((a, b) => a.date.getTime() - b.date.getTime())
+
 @observer
 export default class GardenPage extends Component<GardenPageProps> {
   componentDidMount() {
@@ -30,8 +33,10 @@ export default class GardenPage extends Component<GardenPageProps> {
   }
 
   render() {
-    const {total, contributions, activeTile} = store
+    const {total, activeTile} = store
     const {user} = this.props
+
+    const contributions = Object.values(store.groupByMonth).map(sortMonth)
 
     if (contributions.length === 0) return <Loader />
 
