@@ -17,7 +17,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: 35vw;
+  max-width: 50vw;
 `
 
 const Month = styled.div`
