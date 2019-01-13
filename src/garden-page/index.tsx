@@ -11,7 +11,6 @@ interface GardenPageProps {
 
 function GardenPage({user = ''}: GardenPageProps) {
   const {contributions, activeTile} = store
-  console.log('Contributions =', contributions)
 
   // prettier-ignore
   useEffect(() => {
