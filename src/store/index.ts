@@ -17,6 +17,9 @@ export interface Contribution {
   count: number
 }
 
+const countContributions = (contributions: Contribution[]) =>
+  contributions.map(c => c.count).reduce((a, b) => a + b, 0)
+
 export class Store {
   @observable
   contributions: Contribution[][] = []
@@ -45,10 +48,12 @@ export class Store {
 
   @computed
   get total(): number {
-    const list = this.contributionList
-    if (!list) return 0
+    return countContributions(this.contributionList || [])
+  }
 
-    return list.map(c => c.count).reduce((a, b) => a + b, 0)
+  @computed
+  get monthlyTotal(): number {
+    return countContributions(this.monthlyContributionList)
   }
 
   @computed
@@ -68,14 +73,6 @@ export class Store {
   @computed
   get monthlyContributions(): Contribution[][] {
     return splitEvery(7, this.monthlyContributionList)
-  }
-
-  @computed
-  get monthlyTotal(): number {
-    const list = this.monthlyContributionList
-    if (!list) return 0
-
-    return list.map(c => c.count).reduce((a, b) => a + b, 0)
   }
 
   @action
