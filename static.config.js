@@ -15,7 +15,7 @@ export default {
         component: 'src/landing'
       },
       {
-        path: '/:user',
+        path: '/*',
         component: 'src/garden-page'
       },
       {
