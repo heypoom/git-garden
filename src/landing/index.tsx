@@ -4,7 +4,7 @@ import {navigate} from '@reach/router'
 
 import {Button} from '../ui-button'
 
-const Container = styled.div`
+const LandingContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -72,7 +72,7 @@ export default class LandingPage extends Component<LandingProps, LandingState> {
     const {user} = this.state
 
     return (
-      <Container>
+      <LandingContainer>
         <Heading>Git Garden</Heading>
 
         <Input
@@ -90,7 +90,7 @@ export default class LandingPage extends Component<LandingProps, LandingState> {
         >
           View Garden
         </Button>
-      </Container>
+      </LandingContainer>
     )
   }
 }
