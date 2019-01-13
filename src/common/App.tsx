@@ -6,8 +6,8 @@ import 'normalize.css'
 
 import SiteHead from './SiteHead'
 
-import GardenPage from '../garden-page'
 import LandingPage from '../landing'
+import GardenPage from '../garden-page'
 import ChallengePage from '../challenge'
 
 import '../style.sass'

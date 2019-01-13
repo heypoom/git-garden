@@ -1,4 +1,4 @@
-import React, {useState, CSSProperties} from 'react'
+import React, {CSSProperties, Component} from 'react'
 import styled from '@emotion/styled'
 import {navigate} from '@reach/router'
 
@@ -43,42 +43,54 @@ const buttonStyle: CSSProperties = {
   fontWeight: 300
 }
 
-interface LandingPageProps {
+interface LandingProps {
   path: string
 }
 
-function onKeyPress(event: React.KeyboardEvent<HTMLInputElement>) {
-  if (event.key === 'Enter') {
-    viewGarden(event.currentTarget.value)
+interface LandingState {
+  user: string
+}
+
+export default class LandingPage extends Component<LandingProps, LandingState> {
+  state = {
+    user: ''
+  }
+
+  setUser = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.setState({user: event.target.value})
+  }
+
+  onKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      this.viewGarden(event.currentTarget.value)
+    }
+  }
+
+  viewGarden = (user: string) => navigate('/' + user)
+
+  render() {
+    const {user} = this.state
+
+    return (
+      <Container>
+        <Heading>Git Garden</Heading>
+
+        <Input
+          value={user}
+          placeholder="GitHub Name"
+          onKeyPress={this.onKeyPress}
+          onChange={this.setUser}
+        />
+
+        <Button
+          style={buttonStyle}
+          onClick={() => this.viewGarden(user)}
+          large
+          primary
+        >
+          View Garden
+        </Button>
+      </Container>
+    )
   }
 }
-
-const viewGarden = (user: string) => navigate('/' + user)
-
-function LandingPage(_: LandingPageProps) {
-  const [user, setUser] = useState('')
-
-  return (
-    <Container>
-      <Heading>Git Garden</Heading>
-
-      <Input
-        value={user}
-        placeholder="GitHub Name"
-        onKeyPress={onKeyPress}
-        onChange={e => setUser(e.target.value)}
-      />
-
-      <Button
-        style={buttonStyle}
-        onClick={() => viewGarden(user)}
-        large
-        primary
-      >
-        View Garden
-      </Button>
-    </Container>
-  )
-}
-
-export default LandingPage
