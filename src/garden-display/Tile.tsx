@@ -4,13 +4,15 @@ import {X_POS, Y_POS} from '.'
 
 const WIDTH = 10
 const HEIGH = 7.5
+const TREE_POS_X = -3
+const TREE_POS_Y = -6 
 
 export interface TileProps {
   col: number
 }
 
 export function getCol(col: number, extra: number) {
-  return `translate(${col * X_POS + extra + 3 }em, ${col * -Y_POS + extra + 7 }em)`
+  return `translate(${col * X_POS + extra - TREE_POS_X }em, ${col * -Y_POS + extra - TREE_POS_Y }em)`
 }
 
 export const Tile = styled.div`
@@ -26,10 +28,10 @@ export const Tile = styled.div`
   transform: ${(props: TileProps) => getCol(props.col, 0)};
   
   &:hover {
-    z-index: 999;
+    z-index: 50;
   }
 
   &:hover img {
-    transform: translate(-3em, -7.1em) scale(1.3);
+    transform: translate(${TREE_POS_X}em, ${TREE_POS_Y - 1.2}em) scale(1.3);
   }
 `
