@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {observer} from 'mobx-react'
+import {splitEvery} from 'ramda'
 
 import {Loader} from '../ui-loader'
 import {GardenDisplay} from '../garden-display'
@@ -33,16 +34,15 @@ export default class ChallengePage extends Component<ChallengeProps> {
 
     if (!monthlyContributions) return <Loader />
 
+    const contributions = splitEvery(7, monthlyContributions)
+
     return (
       <div>
         <h1>{user}'s #gitgardenchallenge page</h1>
 
         {monthlyTotal && <div>Contributions: {monthlyTotal}</div>}
 
-        <GardenDisplay
-          select={store.select}
-          contributions={monthlyContributions}
-        />
+        <GardenDisplay select={store.select} contributions={contributions} />
       </div>
     )
   }
