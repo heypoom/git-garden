@@ -6,6 +6,7 @@ import 'normalize.css'
 
 import SiteHead from './SiteHead'
 
+import NotFound from '../not-found'
 import GardenPage from '../garden-page'
 import ChallengePage from '../challenge'
 
@@ -19,6 +20,7 @@ function App() {
       <SiteHead />
 
       <Router>
+        <NotFound path="/not-found" />
         <ChallengePage path="/challenge" />
         <GardenPage path="/:user" />
         <StaticRoutes default />

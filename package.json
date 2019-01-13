@@ -24,6 +24,7 @@
     "react-dom": "16.7.0-alpha.2",
     "react-hot-loader": "^4.6.3",
     "react-ink": "^6.4.0",
+    "react-spinkit": "^3.0.0",
     "react-static": "^6.0.18",
     "react-static-plugin-emotion": "^6.1.1",
     "react-static-plugin-sass": "^6.1.1"
@@ -38,6 +39,7 @@
     "@types/react-dom": "^16.0.11",
     "@types/react-helmet": "^5.0.8",
     "@types/react-hot-loader": "^4.1.0",
+    "@types/react-spinkit": "^3.0.5",
     "@types/webpack-env": "^1.13.6",
     "eslint-config-react-tools": "1.x.x",
     "react-static-plugin-typescript": "^3.0.1",

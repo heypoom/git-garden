@@ -1,26 +1,26 @@
 import React, {Component} from 'react'
 
-export default class NotFound extends Component {
-  state = {
-    ready: false
-  }
+import {Loader} from '../ui-loader/Loader'
+
+interface NotFoundProps {
+  page?: string
+}
+
+interface State {
+  ready: boolean
+}
+
+export default class NotFound extends Component<any, State> {
+  state = {ready: false}
 
   componentDidMount() {
-    const {ready} = this.state
-
-    if (!ready) {
-      this.setState({
-        ready: true
-      })
-    }
+    this.setState({ready: true})
   }
 
   render() {
     const {ready} = this.state
 
-    if (!ready) {
-      return <div>Loading... Please wait.</div>
-    }
+    if (!ready) return <Loader />
 
     return (
       <div>
