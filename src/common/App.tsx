@@ -8,9 +8,7 @@ import Challenge from '../challenge'
 
 import '../style.sass'
 
-function StaticRoutes({default: bool = false}) {
-  return <Routes />
-}
+const StaticRoutes = (_: {default: boolean}) => <Routes />
 
 function App() {
   return (
@@ -18,7 +16,7 @@ function App() {
       <Router>
         <Landing path="/" />
         <Challenge path="/challenge" />
-        <Garden path="/:user" />
+        <Garden path="/:id" />
         <StaticRoutes default />
       </Router>
     </Root>
