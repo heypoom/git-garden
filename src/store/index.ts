@@ -13,7 +13,7 @@ declare global {
 }
 
 export interface Contribution {
-  date: string
+  date: Date
   count: number
 }
 
@@ -37,12 +37,32 @@ export class Store {
   }
 
   @computed
-  get total(): Nullable<Number> {
+  get contributionList(): Nullable<Contribution[]> {
     if (this.contributions.length === 0) return null
 
-    const contributions = flatten<Contribution>(this.contributions)
+    return flatten<Contribution>(this.contributions)
+  }
 
-    return contributions.map(c => c.count).reduce((a, b) => a + b)
+  @computed
+  get total(): number {
+    const list = this.contributionList
+    if (!list) return 0
+
+    return list.map(c => c.count).reduce((a, b) => a + b)
+  }
+
+  @computed
+  get monthContribution(): Nullable<Contribution[]> {
+    const list = this.contributionList
+    if (!list) return null
+
+    const month = new Date().getMonth()
+    const year = new Date().getFullYear()
+
+    const isThisMonth = (c: Contribution) =>
+      c.date.getMonth() === month && c.date.getFullYear() === year
+
+    return list.filter(isThisMonth)
   }
 
   @action

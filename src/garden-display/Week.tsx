@@ -16,7 +16,7 @@ export const Week = ({row, week, select}: WeekProps) => (
   <Row key={row} row={row}>
     {week.map((contribution, col) => (
       <Tile
-        key={contribution.date}
+        key={col}
         onMouseOver={() => select(row, col)}
         src={getTile(contribution.count)}
         col={col}

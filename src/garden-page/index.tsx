@@ -3,13 +3,19 @@ import {observer} from 'mobx-react'
 
 import {GardenDisplay} from '../garden-display'
 
-import {store} from '../store'
-import {Loader} from '../ui-loader/Loader'
+import {store, Contribution} from '../store'
+import {Loader} from '../ui-loader'
 
 interface GardenPageProps {
   path: string
   user?: string
 }
+
+const TileInfo = ({date, count}: Contribution) => (
+  <div>
+    Contribution on {date.toLocaleDateString()} = {count}
+  </div>
+)
 
 @observer
 export default class GardenPage extends Component<GardenPageProps> {
@@ -35,11 +41,7 @@ export default class GardenPage extends Component<GardenPageProps> {
 
         {total && <div>Contributions: {total}</div>}
 
-        {activeTile && (
-          <div>
-            Contribution on {activeTile.date} = {activeTile.count}
-          </div>
-        )}
+        {activeTile && <TileInfo {...activeTile} />}
 
         <GardenDisplay select={store.select} contributions={contributions} />
       </div>

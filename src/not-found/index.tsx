@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-import {Loader} from '../ui-loader/Loader'
+import {Loader} from '../ui-loader'
 
 interface NotFoundProps {
   page?: string

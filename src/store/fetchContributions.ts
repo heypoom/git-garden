@@ -3,7 +3,7 @@ import axios from 'axios'
 import {Contribution} from '.'
 
 const getContribution = (tile: Element): Contribution => ({
-  date: String(tile.getAttribute('data-date')),
+  date: new Date(String(tile.getAttribute('data-date'))),
   count: Number(tile.getAttribute('data-count'))
 })
 
