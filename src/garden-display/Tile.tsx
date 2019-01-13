@@ -2,15 +2,15 @@ import styled from '@emotion/styled'
 
 import {X_POS, Y_POS} from '.'
 
-const WIDTH = 4
-const HEIGH = 3
+const WIDTH = 10
+const HEIGH = 7.5
 
 export interface TileProps {
   col: number
 }
 
 export function getCol(col: number, extra: number) {
-  return `translate(${col * X_POS + extra + 3 }em, ${col * -Y_POS + extra + 6 }em)`
+  return `translate(${col * X_POS + extra + WIDTH }em, ${col * -Y_POS + extra + HEIGH }em)`
 }
 
 export const Tile = styled.div`

@@ -9,5 +9,4 @@ export const Tree = styled.img`
     transform: translate(-3em, -6em);
     width: ${SIZE}em;
     height: ${SIZE}em;
-    z-index:-1;
 `
