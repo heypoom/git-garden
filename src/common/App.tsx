@@ -22,6 +22,7 @@ function App() {
       <Router>
         <NotFound path="/not-found" />
         <ChallengePage path="/challenge" />
+        <ChallengePage path="/challenge/:user" />
         <GardenPage path="/:user" />
         <StaticRoutes default />
       </Router>

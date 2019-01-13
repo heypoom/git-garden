@@ -1,4 +1,4 @@
-import {flatten} from 'ramda'
+import {flatten, splitEvery} from 'ramda'
 import {action, computed, observable} from 'mobx'
 
 import {fetchContributions} from './fetchContributions'
@@ -48,13 +48,13 @@ export class Store {
     const list = this.contributionList
     if (!list) return 0
 
-    return list.map(c => c.count).reduce((a, b) => a + b)
+    return list.map(c => c.count).reduce((a, b) => a + b, 0)
   }
 
   @computed
-  get monthContribution(): Nullable<Contribution[]> {
+  get monthlyContributionList(): Contribution[] {
     const list = this.contributionList
-    if (!list) return null
+    if (!list) return []
 
     const month = new Date().getMonth()
     const year = new Date().getFullYear()
@@ -63,6 +63,19 @@ export class Store {
       c.date.getMonth() === month && c.date.getFullYear() === year
 
     return list.filter(isThisMonth)
+  }
+
+  @computed
+  get monthContributions(): Contribution[][] {
+    return splitEvery(7, this.monthlyContributionList)
+  }
+
+  @computed
+  get monthTotal(): number {
+    const list = this.monthlyContributionList
+    if (!list) return 0
+
+    return list.map(c => c.count).reduce((a, b) => a + b, 0)
   }
 
   @action

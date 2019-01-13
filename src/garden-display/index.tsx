@@ -9,7 +9,7 @@ import {Contribution} from '../store'
 export const X_POS = 4
 export const Y_POS = 2.7
 
-interface SceneProps {
+interface MonthProps {
   index: number
 }
 
@@ -20,9 +20,9 @@ const Container = styled.div`
   max-width: 35vw;
 `
 
-const Scene = styled.div`
+const Month = styled.div`
   position: relative;
-  transform: translateY(${(props: SceneProps) => props.index * 45 + 20}em);
+  transform: translateY(${(props: MonthProps) => props.index * 45 + 20}em);
   filter: drop-shadow(rgba(130, 231, 60, 0.6) 0px 0px 12px);
 `
 
@@ -31,16 +31,18 @@ interface GardenProps {
   select: (row: number, col: number) => void
 }
 
-export const GardenDisplay = ({contributions, select}: GardenProps) => (
-  <Container>
-    {splitEvery(7, contributions).map((weeks, index) => {
-      return (
-        <Scene key={index} index={index}>
+export function GardenDisplay({contributions, select}: GardenProps) {
+  const months = splitEvery(7, contributions)
+
+  return (
+    <Container>
+      {months.map((weeks, index) => (
+        <Month key={index} index={index}>
           {weeks.map((week, row) => (
             <Week key={row} row={row} week={week} select={select} />
           ))}
-        </Scene>
-      )
-    })}
-  </Container>
-)
+        </Month>
+      ))}
+    </Container>
+  )
+}
