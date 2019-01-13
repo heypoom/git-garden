@@ -27,6 +27,10 @@ const groupByMonth = groupBy(
 const sortContributionByDate = (a: Contribution, b: Contribution) =>
   b.date.getTime() - a.date.getTime()
 
+interface MonthContributionMapping {
+  [index: string]: Contribution[]
+}
+
 export class Store {
   @observable
   contributions: Contribution[][] = []
@@ -44,14 +48,12 @@ export class Store {
   }
 
   @computed
-  get groupByMonth(): {[index: string]: Contribution[]} {
-    if (this.contributionList) {
-      const contributions = this.contributionList.sort(sortContributionByDate)
+  get groupByMonth(): MonthContributionMapping {
+    if (!this.contributionList) return {}
 
-      return groupByMonth(contributions)
-    }
+    const contributions = this.contributionList.sort(sortContributionByDate)
 
-    return {}
+    return groupByMonth(contributions)
   }
 
   @computed
