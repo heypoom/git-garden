@@ -20,7 +20,7 @@ function GardenPage({user = ''}: GardenPageProps) {
   }, [user])
 
   return (
-    <div>
+    <div className="garden-page">
       <div>Garden of {user}</div>
 
       {total && <div>Contributions: {total}</div>}

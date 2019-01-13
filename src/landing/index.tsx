@@ -72,7 +72,7 @@ export default class LandingPage extends Component<LandingProps, LandingState> {
     const {user} = this.state
 
     return (
-      <LandingContainer>
+      <LandingContainer className="landing-page">
         <Heading>Git Garden</Heading>
 
         <Input
