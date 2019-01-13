@@ -66,12 +66,12 @@ export class Store {
   }
 
   @computed
-  get monthContributions(): Contribution[][] {
+  get monthlyContributions(): Contribution[][] {
     return splitEvery(7, this.monthlyContributionList)
   }
 
   @computed
-  get monthTotal(): number {
+  get monthlyTotal(): number {
     const list = this.monthlyContributionList
     if (!list) return 0
 

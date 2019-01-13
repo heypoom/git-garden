@@ -25,23 +25,23 @@ export default class ChallengePage extends Component<ChallengeProps> {
 
   render() {
     const {user} = this.props
-    const {monthTotal, monthContributions} = store
+    const {monthlyTotal, monthlyContributions} = store
 
     if (!user) {
       return <h1>Please login with GitHub to view your challenge page.</h1>
     }
 
-    if (!monthContributions) return <Loader />
+    if (!monthlyContributions) return <Loader />
 
     return (
       <div>
         <h1>{user}'s #gitgardenchallenge page</h1>
 
-        {monthTotal && <div>Contributions: {monthTotal}</div>}
+        {monthlyTotal && <div>Contributions: {monthlyTotal}</div>}
 
         <GardenDisplay
           select={store.select}
-          contributions={monthContributions}
+          contributions={monthlyContributions}
         />
       </div>
     )
