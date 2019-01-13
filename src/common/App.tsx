@@ -6,7 +6,6 @@ import 'normalize.css'
 
 import SiteHead from './SiteHead'
 
-import LandingPage from '../landing'
 import GardenPage from '../garden-page'
 import ChallengePage from '../challenge'
 
@@ -20,7 +19,6 @@ function App() {
       <SiteHead />
 
       <Router>
-        <LandingPage path="/" />
         <ChallengePage path="/challenge" />
         <GardenPage path="/:user" />
         <StaticRoutes default />

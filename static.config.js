@@ -8,24 +8,22 @@ export default {
   getSiteData: () => ({
     title: 'Git Garden'
   }),
-  getRoutes: () => {
-    return [
-      {
-        path: '/',
-        component: 'src/landing'
-      },
-      {
-        path: '/*',
-        component: 'src/garden-page'
-      },
-      {
-        path: '/challenge',
-        component: 'src/challenge'
-      },
-      {
-        path: '404',
-        component: 'src/404'
-      }
-    ]
-  }
+  getRoutes: () => [
+    {
+      path: '404',
+      component: 'src/not-found'
+    },
+    {
+      path: '/',
+      component: 'src/landing'
+    },
+    {
+      path: '/challenge',
+      component: 'src/challenge'
+    },
+    {
+      path: '/*',
+      component: 'src/garden-page'
+    }
+  ]
 }

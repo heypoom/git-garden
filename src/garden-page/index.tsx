@@ -1,43 +1,49 @@
-import React, {useEffect} from 'react'
-import {observer} from 'mobx-react-lite'
+import React, {Component} from 'react'
+import {observer} from 'mobx-react'
+
+import {GardenDisplay} from '../garden-display'
 
 import {store} from '../store'
-import {GardenDisplay} from '../garden-display'
 
 interface GardenPageProps {
   path: string
   user?: string
 }
 
-function GardenPage({user = ''}: GardenPageProps) {
-  const {total, contributions, activeTile} = store
+@observer
+export default class GardenPage extends Component<GardenPageProps> {
+  componentDidMount() {
+    const {user} = this.props
 
-  // prettier-ignore
-  useEffect(() => {
-    console.log('User =', user)
+    if (user) {
+      console.log('User =', user)
 
-    store.loadContributions(user)
-  }, [user])
+      store.loadContributions(user)
+    }
+  }
 
-  return (
-    <div className="garden-page">
-      <div>Garden of {user}</div>
+  render() {
+    const {total, contributions, activeTile} = store
+    const {user} = this.props
 
-      {total && <div>Contributions: {total}</div>}
+    return (
+      <div className="garden-page">
+        <div>Garden of {user}</div>
 
-      {activeTile && (
-        <div>
-          Contribution on {activeTile.date} = {activeTile.count}
-        </div>
-      )}
+        {total && <div>Contributions: {total}</div>}
 
-      <GardenDisplay select={store.select} contributions={contributions} />
-    </div>
-  )
+        {activeTile && (
+          <div>
+            Contribution on {activeTile.date} = {activeTile.count}
+          </div>
+        )}
+
+        <GardenDisplay select={store.select} contributions={contributions} />
+      </div>
+    )
+  }
 }
 
 if (typeof window !== 'undefined') {
   window.store = store
 }
-
-export default observer(GardenPage)
