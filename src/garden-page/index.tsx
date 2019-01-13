@@ -4,9 +4,13 @@ import {observer} from 'mobx-react-lite'
 import {store} from '../store'
 import {GardenDisplay} from '../garden-display'
 
-function Garden({path = '', user = ''}) {
-  const {contributions} = store
+interface GardenPageProps {
+  path: string
+  user?: string
+}
 
+function GardenPage({user = ''}: GardenPageProps) {
+  const {contributions, activeTile} = store
   console.log('Contributions =', contributions)
 
   // prettier-ignore
@@ -21,6 +25,12 @@ function Garden({path = '', user = ''}) {
       <div>Garden of {user}</div>
       <div>Contributions: {contributions.length}</div>
 
+      {activeTile && (
+        <div>
+          Contribution on {activeTile.date} = {activeTile.count}
+        </div>
+      )}
+
       <GardenDisplay select={store.select} contributions={contributions} />
     </div>
   )
@@ -30,4 +40,4 @@ if (typeof window !== 'undefined') {
   window.store = store
 }
 
-export default observer(Garden)
+export default observer(GardenPage)

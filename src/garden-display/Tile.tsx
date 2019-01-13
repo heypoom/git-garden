@@ -26,7 +26,6 @@ export const Tile = styled.img`
 
   &:hover {
     z-index: 50;
-    filter: drop-shadow(rgb(130, 231, 60) 0px 0px 12px);
     transform: ${(props: TileProps) => getCol(props.col, -1.2)} scale(1.3);
   }
 `

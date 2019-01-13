@@ -1,7 +1,10 @@
-import {action, observable} from 'mobx'
+import {action, computed, observable} from 'mobx'
 
 import {fetchContributions} from './fetchContributions'
 
+import {Nullable} from '../common/types'
+
+// Inject store into global
 declare global {
   interface Window {
     store: Store
@@ -21,6 +24,15 @@ export class Store {
   cursor = {
     row: 0,
     col: 0
+  }
+
+  @computed
+  get activeTile(): Nullable<Contribution> {
+    if (this.contributions.length === 0) return null
+
+    const {row, col} = this.cursor
+
+    return this.contributions[row][col]
   }
 
   @action
