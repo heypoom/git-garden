@@ -1,5 +1,5 @@
 import React from 'react'
-import {Root, Routes} from 'react-static'
+import {Root, Head, Routes} from 'react-static'
 import {Router} from '@reach/router'
 
 import GardenPage from '../garden-page'
@@ -13,6 +13,11 @@ const StaticRoutes = (_: {default: boolean}) => <Routes />
 function App() {
   return (
     <Root>
+      <Head>
+        <meta charSet="UTF-8" />
+        <title>Git Garden</title>
+        <link rel="manifest" href="/manifest.json" />
+      </Head>
       <Router>
         <LandingPage path="/" />
         <ChallengePage path="/challenge" />
