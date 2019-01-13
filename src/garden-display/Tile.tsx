@@ -10,7 +10,7 @@ export interface TileProps {
 }
 
 export function getCol(col: number, extra: number) {
-  return `translate(${col * X_POS + extra + WIDTH }em, ${col * -Y_POS + extra + HEIGH }em)`
+  return `translate(${col * X_POS + extra + 3 }em, ${col * -Y_POS + extra + 7 }em)`
 }
 
 export const Tile = styled.div`
