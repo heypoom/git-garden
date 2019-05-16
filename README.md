@@ -1,12 +1,17 @@
-# Git garden
+# Git Garden
 
-Let's do some gardening! 🌳 https://gitgarden.io/
+Let's do some gardening! 🌳
+
+https://gitgarden.io
 
 ## What is this? 🤔
 
-This project is Github API which showed your pull request status as a cute forest.
+This project shows your GitHub contributions as a cute forest!
 
-💻 From this..
+The more you commit your code and open PRs, the greener the forest.
+
+💻 ...from this
 ![example1](./example_01.jpg)
+
 🌲 Into this!
 ![example2](./example_02.jpg)
