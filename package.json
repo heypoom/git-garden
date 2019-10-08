@@ -14,7 +14,7 @@
     "@emotion/core": "^10.0.6",
     "@emotion/styled": "^10.0.6",
     "@reach/router": "^1.2.1",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "mobx": "^5.8.0",
     "mobx-react": "^5.4.3",
     "mobx-react-lite": "^0.3.5",
