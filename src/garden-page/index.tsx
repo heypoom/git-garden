@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import styled from '@emotion/styled'
 import {observer} from 'mobx-react'
 
 import {GardenDisplay} from '../garden-display'
@@ -10,6 +11,12 @@ interface GardenPageProps {
   path: string
   user?: string
 }
+
+const ContributionDetail = styled.div`
+  display: block;
+  position: fixed;
+  margin: 16px;
+`
 
 const TileInfo = ({date, count}: Contribution) => (
   <div>
@@ -42,11 +49,15 @@ export default class GardenPage extends Component<GardenPageProps> {
 
     return (
       <div>
-        <div>Garden of {user}</div>
+        <ContributionDetail>
 
-        {total && <div>Contributions: {total}</div>}
+          <div>Garden of {user}</div>
 
-        {activeTile && <TileInfo {...activeTile} />}
+          {total && <div>Contributions: {total}</div>}
+
+          {activeTile && <TileInfo {...activeTile} />}
+
+        </ContributionDetail>
 
         <GardenDisplay select={store.select} contributions={contributions} />
       </div>
