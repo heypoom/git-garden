@@ -1,5 +1,5 @@
 export default {
-  siteRoot: 'https://gitgarden.io',
+  siteRoot: 'https://gitgarden.netlify.app',
   plugins: [
     'react-static-plugin-emotion',
     'react-static-plugin-typescript',

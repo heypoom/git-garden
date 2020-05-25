@@ -2,7 +2,7 @@
 
 Let's do some gardening! 🌳
 
-https://gitgarden.io
+https://gitgarden.netlify.app
 
 ## What is this? 🤔
 
